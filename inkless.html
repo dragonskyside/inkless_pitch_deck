@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>INKLESS - Pitch Deck V6</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <style>
+            /* CORE SETUP */
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                background-color: #0f172a; /* Dark Navy Background */
+                display: grid;
+                gap: 20px;
+                grid-template-columns: 1fr;
+                margin: 0;
+                min-height: 100vh;
+                padding: 20px 0;
+                place-items: center;
+                font-family: "Inter", sans-serif;
+                color: #f8fafc;
+            }
+
+            /* SLIDE CONTAINER */
+            .slide-container {
+                background-color: #1e293b; /* Slate 800 */
+                border-radius: 16px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                display: flex;
+                flex-direction: column;
+                height: 720px;
+                overflow: hidden;
+                padding: 60px;
+                position: relative;
+                width: 1280px;
+                border: 1px solid #334155;
+            }
+
+            /* DECORATIVE BACKGROUND ELEMENTS */
+            .slide-container::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: -20%;
+                width: 800px;
+                height: 800px;
+                background: radial-gradient(
+                    circle,
+                    rgba(56, 189, 248, 0.1) 0%,
+                    rgba(15, 23, 42, 0) 70%
+                );
+                z-index: 0;
+                pointer-events: none;
+            }
+            .slide-container::after {
+                content: "";
+                position: absolute;
+                bottom: -30%;
+                right: -10%;
+                width: 600px;
+                height: 600px;
+                background: radial-gradient(
+                    circle,
+                    rgba(6, 182, 212, 0.08) 0%,
+                    rgba(15, 23, 42, 0) 70%
+                );
+                z-index: 0;
+                pointer-events: none;
+            }
+            .slide-container > * {
+                position: relative;
+                z-index: 1;
+            }
+
+            /* TYPOGRAPHY */
+            h1,
+            h2,
+            h3 {
+                font-family: "Space Grotesk", sans-serif;
+                color: #ffffff;
+                margin: 0;
+            }
+            h1 {
+                font-size: 80px;
+                font-weight: 700;
+                letter-spacing: -2px;
+                line-height: 1.1;
+            }
+            h2.slide-title {
+                font-size: 48px;
+                font-weight: 600;
+                margin-bottom: 40px;
+                color: #38bdf8; /* Sky 400 Accent */
+                border-bottom: 2px solid #334155;
+                padding-bottom: 20px;
+                width: 100%;
+            }
+            h3 {
+                font-size: 28px;
+                font-weight: 500;
+                margin-bottom: 15px;
+                color: #e2e8f0;
+            }
+            p,
+            li {
+                font-size: 18px;
+                line-height: 1.6;
+                color: #cbd5e1;
+            }
+            .subtitle {
+                font-size: 24px;
+                color: #94a3b8;
+                margin-top: 20px;
+            }
+
+            /* LAYOUT UTILITIES */
+            .content-area {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* 1. TITLE SLIDE */
+            .title-layout {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 100%;
+            }
+            .title-layout h1 {
+                background: linear-gradient(to right, #38bdf8, #818cf8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            /* 2. TWO COLUMN (Image Right) */
+            .two-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+                width: 100%;
+                align-items: center;
+            }
+            .image-wrapper {
+                border-radius: 12px;
+                overflow: hidden;
+                height: 400px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                border: 1px solid #475569;
+            }
+            .image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .two-column .image-wrapper img {
+                object-fit: contain;
+                background: #0f172a;
+            }
+            .bullet-list ul {
+                list-style: none;
+                padding: 0;
+            }
+            .bullet-list li {
+                margin-bottom: 20px;
+                padding-left: 35px;
+                position: relative;
+            }
+            .bullet-list li::before {
+                content: "\f058";
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                color: #38bdf8;
+                position: absolute;
+                left: 0;
+                top: 2px;
+            }
+
+            /* 3. BLEED IMAGE RIGHT */
+            .slide-container.bleed-image-layout {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                padding: 0;
+                align-items: start;
+            }
+            .bleed-image-layout .content-container {
+                padding: 80px 60px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 100%;
+            }
+            .bleed-image-layout .image-container {
+                height: 100%;
+                width: 100%;
+            }
+            .bleed-image-layout img.bleed-image-side {
+                width: 100%;
+                height: 100%;
+                max-height: 720px;
+                object-fit: cover;
+                border-left: 4px solid #38bdf8;
+            }
+
+            /* 4. MARKET FUNNEL (New for Slide 4) */
+            .market-stat-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                margin-bottom: 30px;
+            }
+            .market-stat-card {
+                background: #334155;
+                padding: 25px;
+                border-radius: 12px;
+                border: 1px solid #475569;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .market-funnel-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+                margin-top: 10px;
+            }
+            .funnel-card {
+                flex: 1;
+                padding: 25px;
+                border-radius: 12px;
+                text-align: center;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            /* 5. TILED TEXT ICONS */
+            .tiled-content {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+                width: 100%;
+            }
+            .tile {
+                background: #334155;
+                padding: 30px;
+                border-radius: 12px;
+                text-align: center;
+                border: 1px solid #475569;
+                transition: transform 0.3s;
+            }
+            .tile .icon {
+                font-size: 40px;
+                color: #38bdf8;
+                margin-bottom: 20px;
+            }
+            .tile h3 {
+                font-size: 22px;
+            }
+            .tile p {
+                font-size: 16px;
+            }
+
+            /* 6. TWO COLUMN TILED TEXT */
+            .two-column.tiled {
+                align-items: stretch;
+            }
+            .two-column.tiled > div {
+                background: #334155;
+                padding: 30px;
+                border-radius: 12px;
+                border: 1px solid #475569;
+            }
+
+            /* 7. BAR CHART */
+            .chart-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                justify-content: center;
+            }
+            .bar {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .bar .label {
+                width: 180px;
+                text-align: right;
+                font-weight: 600;
+                color: #e2e8f0;
+            }
+            .bar .bar-inner {
+                flex-grow: 1;
+                background: #334155;
+                height: 50px;
+                border-radius: 8px;
+                overflow: hidden;
+                position: relative;
+            }
+            .bar .bar-fill {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding-right: 20px;
+                font-weight: 700;
+                color: #0f172a;
+                font-size: 18px;
+            }
+
+            /* 8. TIMELINE */
+            .timeline-layout {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 40px 0;
+            }
+            .timeline-line {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: #475569;
+                z-index: 0;
+            }
+            .timeline-item {
+                position: relative;
+                z-index: 1;
+                width: 22%;
+                text-align: center;
+            }
+            .timeline-dot {
+                width: 24px;
+                height: 24px;
+                background: #0f172a;
+                border: 4px solid #38bdf8;
+                border-radius: 50%;
+                margin: 0 auto;
+            }
+            .timeline-content {
+                background: #334155;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid #475569;
+                margin-top: 30px;
+                position: absolute;
+                width: 100%;
+                top: 30px;
+            }
+            .timeline-item:nth-child(even) .timeline-content {
+                bottom: 60px;
+                top: auto;
+            }
+            .timeline-content h3 {
+                font-size: 18px;
+                color: #38bdf8;
+                margin-bottom: 5px;
+            }
+            .timeline-content p {
+                font-size: 14px;
+                margin: 0;
+            }
+
+            /* 9. DOUGHNUT CHART */
+            .doughnut-chart-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 60px;
+                width: 100%;
+            }
+            .doughnut-chart {
+                width: 350px;
+                height: 350px;
+                border-radius: 50%;
+                position: relative;
+            }
+            .doughnut-center {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 200px;
+                height: 200px;
+                background: #1e293b;
+                border-radius: 50%;
+                display: grid;
+                place-items: center;
+                font-size: 24px;
+                font-weight: 700;
+                color: #fff;
+            }
+            .legend {
+                list-style: none;
+                padding: 0;
+            }
+            .legend li {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                font-size: 18px;
+            }
+            .color-box {
+                width: 20px;
+                height: 20px;
+                border-radius: 4px;
+                margin-right: 15px;
+            }
+
+            /* 10. FULL BG */
+            .full-bg-image {
+                background-size: cover;
+                background-position: center;
+                position: relative;
+            }
+            .full-bg-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(15, 23, 42, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            /* 11. GRID LIST FOR SLIDE 8 */
+            .grid-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-top: 30px;
+            }
+            .grid-list-item {
+                background: #334155;
+                padding: 25px;
+                border-radius: 12px;
+                border: 1px solid #475569;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .grid-list-item i {
+                font-size: 30px;
+                color: #38bdf8;
+                min-width: 40px;
+            }
+            .grid-list-item h4 {
+                margin: 0;
+                font-size: 20px;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            /* 12. TEAM CARD STYLES */
+            .team-card {
+                background: #334155;
+                padding: 40px;
+                border-radius: 16px;
+                border: 1px solid #475569;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                justify-content: flex-start;
+            }
+            .team-image-wrapper {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-bottom: 25px;
+                border: 4px solid #38bdf8;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            }
+            .team-image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .team-card h3 {
+                font-size: 32px;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+            .team-role {
+                color: #38bdf8;
+                font-weight: 600;
+                font-size: 20px;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .team-bio {
+                font-size: 18px;
+                color: #cbd5e1;
+                max-width: 80%;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Slide 1: Title Slide -->
+        <div class="slide-container" id="slide1">
+            <div class="title-layout">
+                <h1>INKLESS</h1>
+                <p class="subtitle">
+                    The Future of Digital Trust & E-Signatures in Africa
+                </p>
+                <div
+                    style="
+                        margin-top: 40px;
+                        border-top: 1px solid #334155;
+                        padding-top: 20px;
+                    "
+                >
+                    <p style="font-size: 16px; color: #64748b">
+                        Raising $100k Pre-Seed
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide-container" id="slide2">
+            <h2 class="slide-title">
+                The Problem: A Broken Trust Infrastructure
+            </h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="bullet-list">
+                        <p style="margin-bottom: 20px">
+                            Africa's transition to digital is hampered by
+                            antiquated verification methods.
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Paper-Based Friction:</strong> Physical
+                                wet signatures are slow, costly
+                                (printing/courier), and delay critical
+                                transactions.
+                            </li>
+                            <li>
+                                <strong>High Cost of Compliance:</strong> Global
+                                tools like DocuSign are priced in dollars,
+                                making them unaffordable for African SMEs.
+                            </li>
+                            <li>
+                                <strong>Trust Deficit:</strong> A lack of
+                                localized KYC leads to higher fraud risks and
+                                lower enforceability in local courts.
+                            </li>
+                            <li>
+                                <strong>Regulatory Gap:</strong> Foreign tools
+                                often fail to meet specific local mandates
+                                (e.g., NIN integration in Nigeria).
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="paperoffice.jpg" alt="Chaotic paperwork" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Solution (Bleed Image) -->
+        <div class="slide-container bleed-image-layout" id="slide3">
+            <div class="content-container">
+                <h2 class="slide-title" style="border: none">
+                    The Solution: INKLESS
+                </h2>
+                <div class="content-area">
+                    <h3>Secure, Localized E-Signatures</h3>
+                    <p>
+                        Inkless is a mobile-first ecosystem for authentication,
+                        authorization, and witnessing of documents.
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin-top: 20px">
+                        <li style="margin-bottom: 15px">
+                            <strong style="color: #38bdf8">01.</strong> Identity
+                            verification via localized KYC (NIN, Biometrics).
+                        </li>
+                        <li style="margin-bottom: 15px">
+                            <strong style="color: #38bdf8">02.</strong>
+                            Acceptance by courts, legal system and business
+                            community.
+                        </li>
+                        <li style="margin-bottom: 15px">
+                            <strong style="color: #38bdf8">03.</strong>
+                            AI-powered document review to flag risky clauses.
+                        </li>
+                        <li style="margin-bottom: 15px">
+                            <strong style="color: #38bdf8">04.</strong>
+                            Blockchain notarization for incorruptible audit
+                            trails.
+                        </li>
+                        <li>
+                            <strong style="color: #38bdf8">05.</strong>
+                            Affordable pricing model tailored for African
+                            markets.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="image-container">
+                <img
+                    class="bleed-image-side"
+                    src="hero1.jpg"
+                    alt="African business professional"
+                />
+            </div>
+        </div>
+
+        <!-- Slide 4: Market Opportunity (UPDATED) -->
+        <div class="slide-container" id="slide4">
+            <h2 class="slide-title">
+                Market Opportunity: From Global to Local
+            </h2>
+            <div class="content-area">
+                <!-- Top Row: Global & Africa -->
+                <div class="market-stat-row">
+                    <div class="market-stat-card">
+                        <div style="font-size: 40px; color: #38bdf8">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 24px; margin-bottom: 5px">
+                                Global Wave
+                            </h3>
+                            <p style="margin: 0">
+                                <strong>$50 Billion</strong> by 2030
+                            </p>
+                            <p
+                                style="
+                                    font-size: 14px;
+                                    color: #94a3b8;
+                                    margin: 0;
+                                "
+                            >
+                                35% CAGR driven by compliance
+                            </p>
+                        </div>
+                    </div>
+                    <div class="market-stat-card">
+                        <div style="font-size: 40px; color: #38bdf8">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 24px; margin-bottom: 5px">
+                                African Catalyst
+                            </h3>
+                            <p style="margin: 0">
+                                <strong>$180 Billion</strong> Digital Economy
+                            </p>
+                            <p
+                                style="
+                                    font-size: 14px;
+                                    color: #94a3b8;
+                                    margin: 0;
+                                "
+                            >
+                                Fueled by AfCFTA & Digitization
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row: Nigeria Calculation -->
+                <h3
+                    style="color: #fff; margin-bottom: 20px; text-align: center"
+                >
+                    Nigeria: The Path to $24M ARR
+                </h3>
+                <div class="market-funnel-row">
+                    <!-- TAM -->
+                    <div
+                        class="funnel-card"
+                        style="
+                            background: rgba(56, 189, 248, 0.05);
+                            border: 1px solid #475569;
+                        "
+                    >
+                        <p
+                            style="
+                                color: #94a3b8;
+                                font-size: 14px;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                                margin-bottom: 10px;
+                            "
+                        >
+                            Total Market (TAM)
+                        </p>
+                        <div
+                            style="
+                                font-family: &quot;Space Grotesk&quot;;
+                                font-size: 48px;
+                                font-weight: 700;
+                                color: #fff;
+                            "
+                        >
+                            41.5M
+                        </div>
+                        <p style="margin: 0; color: #cbd5e1">
+                            MSMEs in Nigeria
+                        </p>
+                    </div>
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                        style="color: #475569; font-size: 24px"
+                    ></i>
+
+                    <!-- SAM -->
+                    <div
+                        class="funnel-card"
+                        style="
+                            background: rgba(56, 189, 248, 0.1);
+                            border: 1px solid #38bdf8;
+                        "
+                    >
+                        <p
+                            style="
+                                color: #38bdf8;
+                                font-size: 14px;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                                margin-bottom: 10px;
+                            "
+                        >
+                            Digitally Active (SAM)
+                        </p>
+                        <div
+                            style="
+                                font-family: &quot;Space Grotesk&quot;;
+                                font-size: 48px;
+                                font-weight: 700;
+                                color: #fff;
+                            "
+                        >
+                            4.1M
+                        </div>
+                        <p style="margin: 0; color: #cbd5e1">10% of MSMEs</p>
+                    </div>
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                        style="color: #475569; font-size: 24px"
+                    ></i>
+
+                    <!-- SOM -->
+                    <div
+                        class="funnel-card"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #0f172a 0%,
+                                #1e293b 100%
+                            );
+                            border: 2px solid #38bdf8;
+                            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+                        "
+                    >
+                        <p
+                            style="
+                                color: #38bdf8;
+                                font-size: 14px;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                                margin-bottom: 10px;
+                            "
+                        >
+                            Revenue (SOM)
+                        </p>
+                        <div
+                            style="
+                                font-family: &quot;Space Grotesk&quot;;
+                                font-size: 48px;
+                                font-weight: 700;
+                                color: #38bdf8;
+                            "
+                        >
+                            $24M
+                        </div>
+                        <p style="margin: 0; color: #cbd5e1">
+                            Targeting just 5% of SAM
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Business Model -->
+        <div class="slide-container" id="slide5">
+            <h2 class="slide-title">Monetization Strategy</h2>
+            <div class="content-area">
+                <div class="tiled-content">
+                    <div class="tile">
+                        <div class="icon">
+                            <i class="fa-solid fa-repeat"></i>
+                        </div>
+                        <h3>SaaS Subscription</h3>
+                        <p><strong>B2B Focus</strong></p>
+                        <p>
+                            SME Plans at $10/month and Enterprise seats at
+                            $10/user/month. Provides recurring monthly revenue.
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <div class="icon">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <h3>Transaction Fees</h3>
+                        <p><strong>B2C & Freelancers</strong></p>
+                        <p>
+                            Pay-per-use model ($0.75/doc) for individuals.
+                            Upsell opportunities for blockchain notarization
+                            ($2/doc).
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <div class="icon"><i class="fa-solid fa-plug"></i></div>
+                        <h3>API Integration</h3>
+                        <p><strong>Embedded Finance</strong></p>
+                        <p>
+                            Partnerships with Banks, Fintechs, and Gov
+                            ($0.30/sign). Deep integration into existing
+                            workflows.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Use Cases -->
+        <div class="slide-container" id="slide6">
+            <h2 class="slide-title">Versatility Across Sectors</h2>
+            <div class="content-area">
+                <div class="two-column tiled">
+                    <div>
+                        <h3>
+                            <i
+                                class="fa-solid fa-briefcase"
+                                style="color: #38bdf8; margin-right: 10px"
+                            ></i>
+                            Corporate & Legal
+                        </h3>
+                        <ul style="text-align: left; margin-top: 20px">
+                            <li>
+                                <strong>Employment Contracts:</strong> Rapid
+                                remote hiring.
+                            </li>
+                            <li>
+                                <strong>Procurement:</strong> Speed up vendor
+                                onboarding.
+                            </li>
+                            <li>
+                                <strong>Invoices:</strong> Legally binding
+                                payment demands.
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>
+                            <i
+                                class="fa-solid fa-landmark"
+                                style="color: #38bdf8; margin-right: 10px"
+                            ></i>
+                            Banking & Gov
+                        </h3>
+                        <ul style="text-align: left; margin-top: 20px">
+                            <li>
+                                <strong>Loan Agreements:</strong> Reduce
+                                disbursement time from days to minutes.
+                            </li>
+                            <li>
+                                <strong>Land Registries:</strong> Secure
+                                property transfers.
+                            </li>
+                            <li>
+                                <strong>Tax Filings:</strong> Authenticated
+                                submission channels.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Competitive Advantage (Chart) -->
+        <div class="slide-container" id="slide7">
+            <h2 class="slide-title">Why We Win: Cost & Accessibility</h2>
+            <div class="content-area">
+                <div class="chart-container">
+                    <div class="bar">
+                        <div class="label">DocuSign</div>
+                        <div class="bar-inner">
+                            <div
+                                class="bar-fill"
+                                style="
+                                    width: 100%;
+                                    background: #475569;
+                                    color: #fff;
+                                "
+                            >
+                                $25 / user
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar">
+                        <div class="label">Adobe Sign</div>
+                        <div class="bar-inner">
+                            <div
+                                class="bar-fill"
+                                style="
+                                    width: 90%;
+                                    background: #475569;
+                                    color: #fff;
+                                "
+                            >
+                                $22 / user
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar">
+                        <div class="label">HelloSign</div>
+                        <div class="bar-inner">
+                            <div
+                                class="bar-fill"
+                                style="
+                                    width: 60%;
+                                    background: #475569;
+                                    color: #fff;
+                                "
+                            >
+                                $15 / user
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar">
+                        <div class="label" style="color: #38bdf8">INKLESS</div>
+                        <div
+                            class="bar-inner"
+                            style="
+                                background: rgba(56, 189, 248, 0.2);
+                                border: 1px solid #38bdf8;
+                            "
+                        >
+                            <div
+                                class="bar-fill"
+                                style="
+                                    width: 20%;
+                                    background: linear-gradient(
+                                        90deg,
+                                        #06b6d4,
+                                        #38bdf8
+                                    );
+                                    color: #0f172a;
+                                "
+                            >
+                                $5 / user
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p
+                    style="
+                        text-align: center;
+                        margin-top: 30px;
+                        font-style: italic;
+                        color: #94a3b8;
+                    "
+                >
+                    Inkless is 1/5th the cost of global competitors and accepts
+                    local currency payments, removing the USD barrier for
+                    African businesses.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Why We Win: Deep Integration -->
+        <div class="slide-container" id="slide8">
+            <h2 class="slide-title">
+                Why We Win: Deep Integration & Customer Service
+            </h2>
+            <div class="content-area">
+                <p style="text-align: center; margin-bottom: 30px">
+                    We build trust by integrating directly with the institutions
+                    that matter most.
+                </p>
+                <div class="grid-list">
+                    <div class="grid-list-item">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <h4>Courts, Law Enforcement & Government</h4>
+                    </div>
+                    <div class="grid-list-item">
+                        <i class="fa-solid fa-users"></i>
+                        <h4>Employment Agencies & HR</h4>
+                    </div>
+                    <div class="grid-list-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>Insurance Agencies</h4>
+                    </div>
+                    <div class="grid-list-item">
+                        <i class="fa-solid fa-oil-well"></i>
+                        <h4>Oil & Gas Companies</h4>
+                    </div>
+                    <div
+                        class="grid-list-item"
+                        style="
+                            grid-column: span 2;
+                            text-align: center;
+                            justify-content: center;
+                        "
+                    >
+                        <i class="fa-solid fa-store"></i>
+                        <h4>SMEs & General Business Community</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Roadmap -->
+        <div class="slide-container" id="slide9">
+            <h2 class="slide-title">Strategic Roadmap</h2>
+            <div class="content-area">
+                <div class="timeline-layout">
+                    <div class="timeline-line"></div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 1: Pilot</h3>
+                            <p>
+                                Initial project in Edo State. Introduce offering
+                                to customers and refine product and strategy.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 2: Mobile</h3>
+                            <p>
+                                Native iOS & Android apps. Biometric integration
+                                for enhanced security.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 3: National Expansion</h3>
+                            <p>
+                                Entry into Lagos, Abuja, Port Harcourt, Kaduna,
+                                Kano etc.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 4: Africa</h3>
+                            <p>
+                                Entry into Kenya and South Africa. Multilingual
+                                support (Swahili, French).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Ask -->
+        <div class="slide-container" id="slide10">
+            <h2 class="slide-title">Investment Opportunity</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div
+                        style="
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        "
+                    >
+                        <h3
+                            style="
+                                font-size: 60px;
+                                color: #38bdf8;
+                                margin-bottom: 10px;
+                            "
+                        >
+                            $100,000
+                        </h3>
+                        <p
+                            style="
+                                font-size: 24px;
+                                color: #fff;
+                                margin-bottom: 30px;
+                            "
+                        >
+                            SAFE Note
+                        </p>
+                        <p>
+                            We are raising a pre-seed round to accelerate
+                            development, capture early market share, and
+                            establish legal precedents.
+                        </p>
+                        <p style="margin-top: 20px">
+                            <strong>Instrument:</strong> SAFE Note convertible
+                            at next funding round.
+                        </p>
+                    </div>
+
+                    <div class="doughnut-chart-container">
+                        <div
+                            class="doughnut-chart"
+                            style="
+                                background: conic-gradient(
+                                    #38bdf8 0% 30%,
+                                    #06b6d4 30% 60%,
+                                    #6366f1 60% 75.5%,
+                                    #94a3b8 75.5% 100%
+                                );
+                            "
+                        >
+                            <div class="doughnut-center">Allocation</div>
+                        </div>
+                        <ul class="legend">
+                            <li>
+                                <div
+                                    class="color-box"
+                                    style="background: #38bdf8"
+                                ></div>
+                                Marketing (30%)
+                            </li>
+                            <li>
+                                <div
+                                    class="color-box"
+                                    style="background: #06b6d4"
+                                ></div>
+                                Operations (30%)
+                            </li>
+                            <li>
+                                <div
+                                    class="color-box"
+                                    style="background: #6366f1"
+                                ></div>
+                                Product Dev (15.5%)
+                            </li>
+                            <li>
+                                <div
+                                    class="color-box"
+                                    style="background: #94a3b8"
+                                ></div>
+                                Legal/Misc (24.5%)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Meet the Team -->
+        <div class="slide-container" id="slide11">
+            <h2 class="slide-title">Meet The Team</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <!-- Member 1 -->
+                    <div class="team-card">
+                        <div class="team-image-wrapper">
+                            <!-- Placeholder used to avoid broken image icon -->
+                            <img src="file.enc" alt="Jude Ero" />
+                        </div>
+                        <h3>Jude Ero</h3>
+                        <p class="team-role">CEO</p>
+                        <p class="team-bio">
+                            2x founder (Umuzana, Farsight Technologies). Tech,
+                            product, marketing and strategy
+                        </p>
+                    </div>
+
+                    <!-- Member 2 -->
+                    <div class="team-card">
+                        <div class="team-image-wrapper">
+                            <!-- Replaced broken image with reliable placeholder -->
+                            <img src="tobore2.jpg" alt="Tobore Aletor" />
+                        </div>
+                        <h3>Tobore Aletor LLB</h3>
+                        <p class="team-role">
+                            Head of Legal, Compliance & Partnerships
+                        </p>
+                        <p class="team-bio">
+                            Legal expert specializing in regulatory compliance
+                            and corporate partnerships.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Vision/Closing -->
+        <div
+            class="slide-container full-bg-image"
+            id="slide12"
+            style="
+                background-image: url(&quot;https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop&quot;);
+            "
+        >
+            <div class="full-bg-overlay">
+                <div
+                    style="
+                        max-width: 800px;
+                        padding: 40px;
+                        background: rgba(15, 23, 42, 0.85);
+                        border-radius: 16px;
+                        border: 1px solid #38bdf8;
+                    "
+                >
+                    <h2
+                        style="
+                            font-size: 50px;
+                            color: #fff;
+                            margin-bottom: 20px;
+                        "
+                    >
+                        Come Onboard
+                    </h2>
+                    <p
+                        style="
+                            font-size: 24px;
+                            color: #e2e8f0;
+                            margin-bottom: 30px;
+                        "
+                    >
+                        Help us build the continent's most trusted digital
+                        signing platform.
+                    </p>
+                    <div style="font-size: 20px; color: #38bdf8">
+                        <i class="fa-solid fa-envelope"></i>
+                        contact@inkless.africa |
+                        <i class="fa-solid fa-globe"></i> www.inkless.africa
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
